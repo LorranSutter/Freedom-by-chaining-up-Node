@@ -1,0 +1,72 @@
+extends layout
+
+block head-content
+    link(rel="stylesheet" href="css/howItWorks.css")
+
+block main-content
+    section(id="permission")
+        div(class="flex-text")
+            h2 Private and Open
+            p Along with platform owner, each gamer with their unique Gamer ID will be able to join, read and write.
+            p On the other hand, there will be other outside users on the platform that will be able to follow the transactions in real time and see what is going on in the open asset markets.
+        div(class="flex-image")
+            figure
+                img(src="img/PrivateOpen.png" alt="PrivateOpen")
+                figcaption(class="figcaption-right") Inspired in 
+                    a(href="https://www.backblaze.com/blog/private-cloud-vs-public-cloud/" target="_blank") backblaze
+    
+    hr
+
+    section(id="consensus")
+        div(class="flex-image")
+            figure
+                img(src="img/PoET.jpg" alt="PoET")
+                figcaption(class="figcaption-left") Photo by 
+                    a(href="https://unsplash.com/@goumbik?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank") Lukas Blazek
+                    |  on 
+                    a(href="https://unsplash.com/s/photos/time?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank") Unsplash
+        div(class="flex-text")
+            h2 Proof of Elapsed Time
+            p Proof of Elapsed Time (PoET), what is a variation of the classic Proof of Work (PoW) consensus, but it aims to eliminate the wasteful energy consumption.
+            p It creates a similar lottery-base system to build a new block, where each node generates a random wait time and goes to sleep until the first that wake up commits the new block and broadcast the information to the network.
+
+    hr
+    section(id="hyperledger")
+        div(class="flex-text")
+            h2 Hyperledger Sawtooth
+            p Hyperledger Sawtooth has a modular architecture enabling enterprises and consortia to make policy decisions.
+            p It provides a good range of features:
+            ul
+                li 
+                    b Dynamic consensus
+                    |  change consensus mechanism any time
+                li 
+                    b Parallel transactions
+                    |  reduce the amount of time taken to process transactions in the system
+                li 
+                    b Transaction receipt
+                    |  improve user experience with information to the client
+            div
+                figure
+                    img(src="img/Sawtooth.png" alt="sawtooth")
+                    figcaption(class="figcaption-left") Thanks to 
+                        a(href="https://github.com/hyperledger/sawtooth-core" target="_blank") Github
+        div(class="flex-image")
+            iframe(class="video-responsive" src="https://www.youtube.com/embed/8nrVlICgiYM" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+        
+    hr
+
+    section(id="diagram")
+        div(class="flex-image")
+            figure
+                img(src="img/NewTradeModel.png" alt="newTradeModel")
+                figcaption(class="figcaption-left") Inspired in 
+                    a(href="https://www.123rf.com/" target="_blank") 123rf
+                    | , 
+                    a(href="https://www.svgrepo.com/" target="_blank") svgrepo
+                    |  and 
+                    a(href="https://cdn4.vectorstock.com/" target="_blank") cdn4
+        div(class="flex-text")
+            h2 Flow diagram
+            p Users will be able to exchange its assets with other users, even if the assets are from different games.
+            p Smart contracts will be responsible for establishing a connection among the gamers, the platform and the game owners, decentralizing trade, account update process and private contract clauses.

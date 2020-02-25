@@ -1,5 +1,48 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block head-content
+    link(rel="stylesheet", href="css/index.css")
+
+block main-content
+
+    section(id="main-description")
+        div(class="main-description-content")
+            h1 Freedom by chaining-up!
+            h2 Blockchain for the autonomy of online gamers
+            a(href="signup", class="sign-up-button") Sign up to get started
+            div(class="badges")
+                a(href="/")
+                    img(src="img/google-play-badge.png", alt="google-badge")
+                a(href="/")
+                    img(src="img/app-store-badge.png", alt="apple-badge")
+
+    section(id="top-features",class="top-features")
+        div
+            h2 Top Features
+        div(class="top-features-features")
+            div
+                img(src="img/ParallelTransactionWhite.png", alt="Parallel transactions")
+                div Parallel transactions
+            div
+                img(src="img/DiamondWhite.png", alt="Asset equivalence")
+                div Asset equivalence
+            div
+                //- Thanks to https://www.colourbox.com/vector/pos-terminal-with-credit-card-and-receipt-outline-icon-vector-31837804
+                img(src="img/TransactionReceiptWhite.png", alt="Transaction receipt")
+                div Transaction receipt
+                    
+    section(id="realtime-transactions")
+        div
+            h2 Real Time Transactions
+        div(class="div-table-realtime-transactions")
+            table(id="table-realtime-transactions")
+                thead
+                    tr
+                        th(id="col-hash") Hash
+                        th(id="col-date") Timestamp
+                        th(id="col-send") Send
+                        th(id="col-receive") Receive
+                tbody
+
+block scripts-content
+    script(src="js/hash.js")

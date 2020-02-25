@@ -1,0 +1,25 @@
+extends layout
+
+block head-content
+    link(rel="stylesheet" href="css/login.css")
+    
+block main-content
+    form(action="signup" method="post" class="login-form")
+        h1 Sign Up
+
+        label(for="login-email") Email *
+        input(type="email" name="email" id="login-email" pattern="[\w]+@[\w]+\.[\.\w]+" required)
+
+        label(for="login-password") Password *
+        input(type="password" name="password" id="login-password" required)
+
+        label(for="login-password-confirm") Confirm password *
+        input(type="password" name="password" id="login-password-confirm" required)
+
+        input(type="submit" value="Sign Up" class="login-submit-button")
+
+        div(class="sign-in") Already have an account? 
+            a(href="login") Login
+
+block scripts-content
+    script(src="js/signup.js")

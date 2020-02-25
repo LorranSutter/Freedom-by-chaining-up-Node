@@ -1,0 +1,18 @@
+extends layout
+
+block head-content
+    link(rel="stylesheet" href="css/contact.css")
+
+block main-content
+    div
+        form(action="contact.html" method="post" class="contact-form")
+            h2 Contact us
+            label(for="firstname") First Name *
+            input(type="text" id="firstname" name="firstname" required)
+            label(for="lastname") Last Name *
+            input(type="text" id="lastname" name="lastnamee" required)
+            label(for="email") Email Address *
+            input(type="email" id="email" name="email" pattern="[\w]+@[\w]+\.[\.\w]+" required)
+            label(for="subject") Message *
+            textarea(id="subject" name="subject" class="subject" placeholder="What do you need?" minlength="5" maxlength="150" required)
+            input(type="submit" value="Submit" class="contact-submit-button")

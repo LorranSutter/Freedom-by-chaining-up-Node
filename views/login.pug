@@ -1,0 +1,19 @@
+extends layout
+
+block head-content
+    link(rel="stylesheet", href="css/login.css")
+
+block main-content
+    form(action="login", method="post", class="login-form")
+        h1 Login
+
+        label(for="login-email") Email *
+        input(type="email" name="email" id="login-email" pattern="[\w]+@[\w]+\.[\.\w]+" required)
+
+        label(for="login-password") Password *
+        input(type="password" name="password" id="login-password" required)
+
+        input(type="submit" value="Login" class="login-submit-button")
+
+        div(class="sign-in") Don't have account? 
+            a(href="signup") Sign Up
