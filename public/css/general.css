@@ -103,7 +103,6 @@ footer {
 }
 
 a:active, a:visited {
-    font-weight: bold;
     text-decoration: none;
     color: rgb(0, 123, 163);
 }
