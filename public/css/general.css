@@ -102,8 +102,8 @@ footer {
     flex-grow: 1;
 }
 
-a:active,
-a:visited {
-    color: inherit;
+a:active, a:visited {
+    font-weight: bold;
     text-decoration: none;
+    color: rgb(0, 123, 163);
 }

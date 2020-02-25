@@ -16,12 +16,6 @@ body {
 
 /* Main Description */
 
-/* #main-description {
-    background-image: url(../img/blockchain.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-} */
-
 .main-description-content {
     flex-direction: column;
     text-align: left;

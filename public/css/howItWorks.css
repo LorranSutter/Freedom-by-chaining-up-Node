@@ -8,6 +8,16 @@ section h2 {
     color: rgb(0, 136, 186);
 }
 
+section a, a:visited {
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(0, 123, 163);
+}
+
+section a:hover {
+    text-decoration: underline;
+}
+
 section > div {
     height: 100%;
     margin: 0 2vw 0 2vw;
