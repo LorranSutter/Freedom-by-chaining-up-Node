@@ -1,0 +1,36 @@
+.assets {
+    grid-column: 2 / 4;
+    grid-row: 1;
+}
+
+.table-assets-div {
+    margin-top: 0.5em;
+    height: 80%;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.table-assets-div table{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table-assets-div::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.table-assets-div::-webkit-scrollbar-thumb {
+    background-color: gray;
+    outline: 1px solid slategrey;
+}
+
+.table-assets-div td {
+    padding: 0.5em;
+
+    background-color: transparent;    
+    border-bottom: 1px solid;
+    border-color: rgba(255, 255, 255, 0.5);
+    outline: none;
+    color: var(--text-color);
+}

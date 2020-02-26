@@ -1,0 +1,32 @@
+.profile {
+    grid-column: 1;
+    grid-row: 1 / 3;
+}
+
+.profile-name-avatar {
+    display: flex;
+    align-items: center;
+}
+
+.profile-name-avatar img {
+    width: 90px;
+}
+
+.profile-name-avatar span {
+    margin-left: 10px;
+    font-size: larger;
+}
+
+.profile-balance-logo {
+    display: flex;
+    align-items: center;
+}
+
+.profile-balance-logo img {
+    width: 40px;
+}
+
+.profile-balance-logo span {
+    margin-left: 10px;
+    font-size: larger;
+}

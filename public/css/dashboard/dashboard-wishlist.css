@@ -1,0 +1,43 @@
+.wishlist {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.wishlist input {
+    width: 100%;
+    margin-top: 0.5em;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px white solid;
+    outline: none;
+    color: var(--text-color);
+}
+
+.wishlist ul {
+    list-style: none;
+    overflow: auto;
+    height: 75%;
+    overflow-y: scroll;
+    margin-top: 0.5em;
+}
+
+.wishlist ul::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.wishlist ul::-webkit-scrollbar-thumb {
+    background-color: gray;
+    outline: 1px solid slategrey;
+}
+
+.wishlist ul li {
+    padding: 0.5em;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    border-color: rgba(255, 255, 255, 0.5);
+    outline: none;
+    color: var(--text-color);
+}
