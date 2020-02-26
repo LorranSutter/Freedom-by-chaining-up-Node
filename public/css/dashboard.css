@@ -10,7 +10,6 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 30vmin);
     grid-gap: 2vmin;
-    /* grid-auto-rows: minmax(100px, auto); */
 
     background-color: var(--main-bg-color);
 }
@@ -84,7 +83,7 @@
 }
 
 .wishlist ul::-webkit-scrollbar {
-    width: 0.8em;
+    width: 0.5em;
 }
 
 .wishlist ul::-webkit-scrollbar-thumb {
@@ -93,9 +92,14 @@
 }
 
 .wishlist ul li {
-    padding: 0.3em;
-    background-color: gray;
-    border: 1px solid black;
+    padding: 0.5em;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    border-color: rgba(255, 255, 255, 0.5);
+    outline: none;
+    color: var(--text-color);
 }
 
 /* Assets */
@@ -105,27 +109,36 @@
     grid-row: 1;
 }
 
-.assets ul {
-    list-style: none;
-    overflow: auto;
-    height: 80%;
-    overflow-y: scroll;
+.table-assets-div {
     margin-top: 0.5em;
+    height: 80%;
+    overflow: auto;
+    overflow-y: scroll;
 }
 
-.assets ul::-webkit-scrollbar {
-    width: 0.8em;
+.table-assets-div table{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
 }
 
-.assets ul::-webkit-scrollbar-thumb {
+.table-assets-div::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.table-assets-div::-webkit-scrollbar-thumb {
     background-color: gray;
     outline: 1px solid slategrey;
 }
 
-.assets ul li {
-    padding: 0.3em;
-    background-color: gray;
-    border: 1px solid black;
+.table-assets-div td {
+    padding: 0.5em;
+
+    background-color: transparent;    
+    border-bottom: 1px solid;
+    border-color: rgba(255, 255, 255, 0.5);
+    outline: none;
+    color: var(--text-color);
 }
 
 /* Marketplace */
@@ -142,20 +155,47 @@
     grid-row: 1 / 4;
 }
 
-.table-realtime-transactions {
-    width: 100%;
-    text-align: center;
+.transaction-history-div {
+    margin-top: 0.5em;
+    height: 80%;
+    overflow: auto;
+    overflow-y: scroll;
 }
 
-.table-realtime-transactions tbody tr:nth-child(odd) {
+.table-transaction-history {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.transaction-history-div::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.transaction-history-div::-webkit-scrollbar-thumb {
+    background-color: gray;
+    outline: 1px solid slategrey;
+}
+
+.table-transaction-history td {
+    padding: 0.5em;
+
+    background-color: transparent;    
+    border-bottom: 1px solid;
+    border-color: rgba(255, 255, 255, 0.5);
+    outline: none;
+    color: var(--text-color);
+}
+
+/* .table-transaction-history tbody tr:nth-child(odd) {
     background-color: rgba(0, 136, 186, 0.85);
     color: snow;
 }
 
-.table-realtime-transactions tbody tr:nth-child(even) {
+.table-transaction-history tbody tr:nth-child(even) {
     background-color: rgba(153, 225, 252, 0.85);
     color: black;
-}
+} */
 
 /* Media Query */
 
