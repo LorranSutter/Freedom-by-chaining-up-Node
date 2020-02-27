@@ -6,7 +6,9 @@
 
 :root {
     --main-bg-color: #0A2127;
+    --div-bg-color: rgba(19, 55, 67, 0.7);
     --text-color: white;
+    --title-color: #B1EBFE;
 }
 
 .container {
@@ -23,8 +25,12 @@
 .container > div {
     padding: 2vmin;
     border-radius: 10px;
-    background-color: rgba(19, 55, 67, 0.8);
+    background-color: var(--div-bg-color);
     color: var(--text-color);
+}
+
+.container h4 {
+    color: var(--title-color);
 }
 
 /* Media Query */
