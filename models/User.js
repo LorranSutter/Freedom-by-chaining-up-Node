@@ -19,6 +19,10 @@ let UserSchema = new Schema({
         type: String,
         required: true,
     },
+    balance: {
+        type: Number,
+        default: 0
+    },
     assets: [
         {
             type: Schema.Types.ObjectId,
