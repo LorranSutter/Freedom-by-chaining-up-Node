@@ -26,11 +26,15 @@
 }
 
 .table-assets-div th, td {
-    padding: 0.5em;
+    padding: 0.4em;
 
     background-color: transparent;    
     border-bottom: 1px solid;
     border-color: rgba(255, 255, 255, 0.5);
     outline: none;
     color: var(--text-color);
+}
+
+.table-assets-div img {
+    height: 20px;
 }
