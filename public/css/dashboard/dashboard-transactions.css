@@ -3,7 +3,7 @@
     grid-row: 1 / 4;
 }
 
-.transaction-history-div {
+.transaction-history-content {
     margin-top: 0.5em;
     height: 80%;
     overflow: auto;
@@ -16,11 +16,11 @@
     border-collapse: collapse;
 }
 
-.transaction-history-div::-webkit-scrollbar {
+.transaction-history-content::-webkit-scrollbar {
     width: 0.5em;
 }
 
-.transaction-history-div::-webkit-scrollbar-thumb {
+.transaction-history-content::-webkit-scrollbar-thumb {
     background-color: gray;
     outline: 1px solid slategrey;
 }

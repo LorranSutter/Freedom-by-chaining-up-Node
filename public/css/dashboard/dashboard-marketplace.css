@@ -3,29 +3,29 @@
     grid-row: 2 / 4;
 }
 
-.table-marketplace-div {
+.table-marketplace-content {
     margin-top: 0.5em;
     height: 80%;
     overflow: auto;
     overflow-y: scroll;
 }
 
-.table-marketplace-div table{
+.table-marketplace-content table{
     width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
 
-.table-marketplace-div::-webkit-scrollbar {
+.table-marketplace-content::-webkit-scrollbar {
     width: 0.5em;
 }
 
-.table-marketplace-div::-webkit-scrollbar-thumb {
+.table-marketplace-content::-webkit-scrollbar-thumb {
     background-color: gray;
     outline: 1px solid slategrey;
 }
 
-.table-marketplace-div th, td {
+.table-marketplace-content th, td {
     padding: 0.4em;
 
     background-color: transparent;    
@@ -35,6 +35,6 @@
     color: var(--text-color);
 }
 
-.table-marketplace-div img {
+.table-marketplace-content img {
     height: 20px;
 }

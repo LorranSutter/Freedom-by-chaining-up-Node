@@ -3,29 +3,29 @@
     grid-row: 1;
 }
 
-.table-assets-div {
+.table-assets-content {
     margin-top: 0.5em;
     height: 80%;
     overflow: auto;
     overflow-y: scroll;
 }
 
-.table-assets-div table{
+.table-assets-content table{
     width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
 
-.table-assets-div::-webkit-scrollbar {
+.table-assets-content::-webkit-scrollbar {
     width: 0.5em;
 }
 
-.table-assets-div::-webkit-scrollbar-thumb {
+.table-assets-content::-webkit-scrollbar-thumb {
     background-color: gray;
     outline: 1px solid slategrey;
 }
 
-.table-assets-div th, td {
+.table-assets-content th, td {
     padding: 0.4em;
 
     background-color: transparent;    
@@ -35,6 +35,6 @@
     color: var(--text-color);
 }
 
-.table-assets-div img {
+.table-assets-content img {
     height: 20px;
 }

@@ -14,29 +14,29 @@
     color: var(--text-color);
 }
 
-.table-wishlist-div {
+.table-wishlist-content {
     margin-top: 0.5em;
     height: 80%;
     overflow: auto;
     overflow-y: scroll;
 }
 
-.table-wishlist-div table{
+.table-wishlist-content table{
     width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
 
-.table-wishlist-div::-webkit-scrollbar {
+.table-wishlist-content::-webkit-scrollbar {
     width: 0.5em;
 }
 
-.table-wishlist-div::-webkit-scrollbar-thumb {
+.table-wishlist-content::-webkit-scrollbar-thumb {
     background-color: gray;
     outline: 1px solid slategrey;
 }
 
-.table-wishlist-div th, td {
+.table-wishlist-content th, td {
     padding: 0.4em;
 
     background-color: transparent;    
@@ -46,6 +46,6 @@
     color: var(--text-color);
 }
 
-.table-wishlist-div img {
+.table-wishlist-content img {
     height: 20px;
 }
