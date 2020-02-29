@@ -1,0 +1,16 @@
+div(class="assets")
+    h3 Assets    
+    div(class="table-assets-content")
+        table(class="table-assets")
+            thead
+                tr
+                    th(id="col-item") Item
+                    th(id="col-amount") Amount
+                    th(id="col-sell") Sell
+            tbody
+                each i in [1,2,3,4,5,6,7,8,9]
+                    tr
+                        td Item !{i}
+                        td 100
+                        td 
+                            img(src="img/sell_logo.png" alt="sell_logo")

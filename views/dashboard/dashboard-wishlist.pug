@@ -1,0 +1,15 @@
+div(class="wishlist")
+    h3 Wishlist
+    input(type="search" name="wishlist-search" id="wishlist-search" placeholder="Search")
+    div(class="table-wishlist-content")
+        table(class="table-wishlist")
+            thead
+                tr
+                    th(id="col-item") Item
+                    th(id="col-remove") Remove
+            tbody
+                each i in [1,2,3,4,5,6,7,8,9]
+                    tr
+                        td Item !{i}
+                        td 
+                            img(src="img/remove_logo.png" alt="remove_logo")

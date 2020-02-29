@@ -1,0 +1,12 @@
+extends layout
+
+block head-content
+    link(rel="stylesheet" href="css/dashboard/dashboard-general.css")
+    
+block main-content
+    div(class="container")
+        include dashboard/dashboard-profile.pug
+        include dashboard/dashboard-wishlist.pug
+        include dashboard/dashboard-assets.pug
+        include dashboard/dashboard-marketplace.pug
+        include dashboard/dashboard-transactions.pug
