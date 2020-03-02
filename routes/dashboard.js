@@ -1,9 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
+const auth = require("../middlewares/auth");
+
 /* GET dashboard layout page. */
 router.get('/', function(req, res, next) {
-  res.render('dashboard', { title: 'Dashboard' });
+    if (req.session.user && req.cookies.user_sid) {
+        res.render('dashboard', { title: 'Dashboard' });
+    } else {
+        res.redirect('/login');
+    }
 });
 
 /* GET dashboard profile page. */
