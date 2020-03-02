@@ -4,11 +4,11 @@ block head-content
     link(rel="stylesheet", href="css/login.css")
 
 block main-content
-    form(action="login", method="post", class="login-form")
+    form(action="login/auth", method="post", class="login-form")
         h1 Login
 
         label(for="login-email") Email *
-        input(type="email" name="email" id="login-email" pattern="[\w]+@[\w]+\.[\.\w]+" required)
+        input(type="email" name="email" id="login-email" required)
 
         label(for="login-password") Password *
         input(type="password" name="password" id="login-password" required)

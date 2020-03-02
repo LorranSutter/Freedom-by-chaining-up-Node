@@ -26,7 +26,7 @@ body {
     margin: 0.5em 0 0.5em 0;
 }
 
-.login-form input[type="email"], input[type="password"] {
+.login-form input[type="text"], input[type="email"], input[type="password"] {
     background-color: transparent;
     border: none;
     border-bottom: 1px black solid;
