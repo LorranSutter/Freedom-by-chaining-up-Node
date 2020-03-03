@@ -77,6 +77,12 @@ router.post(
   }
 );
 
+// route for user logout
+router.get('/logout', auth, (req, res) => {
+  res.clearCookie('user_sid');
+  res.redirect('/');
+});
+
 router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
