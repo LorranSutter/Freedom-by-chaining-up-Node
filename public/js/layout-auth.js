@@ -6,11 +6,6 @@ function loginNavBar(data) {
 }
 
 $(document).ready(function(){
-    $.ajax(
-        '/auth',
-        {
-            method: 'GET',
-            success: loginNavBar
-        }
-    )
+    $.get('/auth')
+     .done(loginNavBar);
 });

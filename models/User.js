@@ -17,7 +17,8 @@ let UserSchema = new Schema({
         type: String,
         unique: true,
         required: true,
-        trim: true
+        trim: true,
+        lowercase: true
       },
     password: {
         type: String,
