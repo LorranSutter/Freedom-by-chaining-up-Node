@@ -1,4 +1,5 @@
 var express = require('express');
+let {check, validationResult} = require('express-validator');
 var router = express.Router();
 
 const User = require("../models/User");
@@ -11,41 +12,43 @@ router.get('/', function(req, res, next) {
 
 router.post(
     "/auth",
+    [
+        check('email').isEmail()
+    ],
     async (req, res) => {
-
-    const {
-        username,
-        email,
-        password
-    } = req.body;
-
-    try {
-        let user = await User.findOne({
-            email
-        });
-        if (user) {
-            return res.status(400).json({
-                msg: "User Already Exists"
-            });
-        }
-
-        user = new User({
+        const {
             username,
             email,
             password
-        });
+        } = req.body;
 
-        await user.save();
+        try {
+            let user = await User.findOne({
+                email
+            });
+            if (user) {
+                return res.status(400).json({
+                    msg: "User Already Exists"
+                });
+            }
 
-        req.session.user = {
-            email: user.email,
-            password: user.password
-          }
-        res.redirect('/dashboard');
-    } catch (err) {
-        console.log(err.message);
-        res.status(500).send("Error in Saving");
-    }
+            user = new User({
+                username,
+                email,
+                password
+            });
+
+            await user.save();
+
+            req.session.user = {
+                email: user.email,
+                password: user.password
+            }
+            res.redirect('/dashboard');
+        } catch (err) {
+            console.log(err.message);
+            res.status(500).send("Error in Saving");
+        }
   }
 );
 
