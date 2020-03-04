@@ -37,6 +37,10 @@
     flex: 1;
 }
 
+#logout-link {
+    display: none;
+}
+
 #burger-icon {
     display: none;
 }

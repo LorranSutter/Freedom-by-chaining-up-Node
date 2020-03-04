@@ -7,6 +7,9 @@ const auth = require("../middlewares/auth");
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
+  if (req.session.user && req.cookies.user_sid) {
+    res.redirect('/dashboard');
+  }
   res.render('login', { title: 'Login' });
 });
 
