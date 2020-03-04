@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
 
-let MarketPlaceSchema = new Schema({
+let MarketItemSchema = new Schema({
     seller: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -15,4 +15,4 @@ let MarketPlaceSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('MarketPlace', MarketPlaceSchema);
+module.exports = mongoose.model('MarketPlace', MarketItemSchema);
