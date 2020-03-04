@@ -30,7 +30,15 @@ let UserSchema = new Schema({
     assets: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Asset'
+            ref: 'Asset',
+            amount: {
+                type: Number,
+                default: 0
+            },
+            selling: {
+                type: Boolean,
+                default: false
+            }
         }
     ],
     wishlist: [

@@ -15,7 +15,11 @@ let TransactionSchema = new Schema({
     },
     asset:{
         type: Schema.Types.ObjectId,
-        ref: 'Asset'
+        ref: 'Asset',
+        required: true,
+        amount: {
+            type: Number
+        }
     }    
 });
 

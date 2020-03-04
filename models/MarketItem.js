@@ -11,7 +11,11 @@ let MarketItemSchema = new Schema({
     asset: {
         type: Schema.Types.ObjectId,
         ref: 'Asset',
-        required: true
+        required: true,
+        amount: {
+            type: Number,
+            required: true
+        }
     }
 });
 
