@@ -12,13 +12,13 @@ let UserSchema = new Schema({
         required: true,
         trim: true,
         lowercase: true
-        },
+      },
     username: {
         type: String,
         unique: true,
         required: true,
         trim: true
-        },
+      },
     password: {
         type: String,
         required: true,

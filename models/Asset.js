@@ -8,6 +8,12 @@ let AssetSchema = new Schema({
         required: true,
         trim: true
         },
+    amount: {
+        type: Number
+    },
+    selling: {
+        type: Boolean
+    },
     gameId: {
         type: Schema.Types.ObjectId,
         ref: 'Game',
