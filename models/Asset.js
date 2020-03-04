@@ -8,7 +8,7 @@ let AssetSchema = new Schema({
         required: true,
         trim: true
         },
-    gameId: {
+    game: {
         type: Schema.Types.ObjectId,
         ref: 'Game',
         required: true
