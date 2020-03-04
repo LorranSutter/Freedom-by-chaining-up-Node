@@ -8,6 +8,7 @@
     "serverstart": "SET DEBUG=bcdv1007-finalproject:* npm run devstart"
   },
   "dependencies": {
+    "async": "^3.2.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
