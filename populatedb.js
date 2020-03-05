@@ -1,13 +1,5 @@
-console.log('This script populates some test books, authors, genres and bookinstances to your database. Specified database as argument - e.g.: populatedb mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true');
+console.log('This script populates some test Games, Users, Assets, Transactions and Market Items to your database');
 
-// Get arguments passed on command line
-var userArgs = process.argv.slice(2);
-/*
-if (!userArgs[0].startsWith('mongodb')) {
-    console.log('ERROR: You need to specify a valid mongodb URL as the first argument');
-    return
-}
-*/
 var async = require('async');
 var User = require('./models/User');
 var Asset = require('./models/Asset');
@@ -15,33 +7,17 @@ var Game = require('./models/Game');
 var Transaction = require('./models/Transaction');
 var MarketItem = require('./models/MarketItem');
 
-var Book = require('./models/User');
-var Author = require('./models/Asset');
-var Genre = require('./models/Transaction');
-var BookInstance = require('./models/MarketItem');
-
 const InitiateMongoServer = require("./config/db");
+const mongoose = require('mongoose');
 
 // Initiate Mongo Server
 InitiateMongoServer();
-
-// var mongoose = require('mongoose');
-// var mongoDB = userArgs[0];
-// mongoose.connect(mongoDB, { useNewUrlParser: true });
-// mongoose.Promise = global.Promise;
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 let users = [];
 let assets = [];
 let games = [];
 let transactions = [];
 let marketItens = [];
-
-var authors = []
-var genres = []
-var books = []
-var bookinstances = []
 
 function gameCreate(name, cb) {
     let game = new Game({ name: name });
@@ -51,7 +27,7 @@ function gameCreate(name, cb) {
             cb(err, null);
             return;
         }
-        console.log('New Game: ' + game);
+        console.log('New Game: ' + game.name);
         games.push(game);
         cb(null, game);
     });
@@ -68,21 +44,20 @@ function assetCreate(name, game, cb) {
             cb(err, null);
             return;
         }
-        console.log('New Asset: ' + asset);
+        console.log('New Asset: ' + asset.name);
         assets.push(asset);
         cb(null, asset);
     });
 }
 
-function userCreate(email, username, password, balance, assets, wishlist, cb) {
+function userCreate(username, email, password, balance, assets, wishlist, cb) {
     let user = new User({
-        email,
-        name,
-        username,
-        password,
-        balance,
-        assets,
-        wishlist
+      username,
+      email,
+      password,
+      balance,
+      assets,
+      wishlist
     });
          
     user.save(function (err) {
@@ -90,7 +65,7 @@ function userCreate(email, username, password, balance, assets, wishlist, cb) {
             cb(err, null);
             return;
         }
-        console.log('New User: ' + user);
+        console.log('New User: ' + user.username);
         users.push(user);
         cb(null, user);
     });
@@ -101,14 +76,14 @@ function transactionCreate(seller, buyer, asset, cb) {
         seller,
         buyer,
         asset
-    });
+    });    
          
     transaction.save(function (err) {
         if (err) {
             cb(err, null);
             return;
         }
-        console.log('New Transaction: ' + transaction);
+        console.log('New Transaction');
         transactions.push(transaction);
         cb(null, transaction);
     });
@@ -120,95 +95,19 @@ function marketItemCreate(seller, asset, cb) {
         asset
     });
          
-    marketItens.save(function (err) {
+    marketItem.save(function (err) {
         if (err) {
             cb(err, null);
             return;
         }
-        console.log('New Market Item: ' + marketItem);
+        console.log('New Market Item');
         marketItens.push(marketItem);
         cb(null, marketItem);
     });
 }
 
-
-// function authorCreate(first_name, family_name, d_birth, d_death, cb) {
-//   authordetail = {first_name:first_name , family_name: family_name }
-//   if (d_birth != false) authordetail.date_of_birth = d_birth
-//   if (d_death != false) authordetail.date_of_death = d_death
-  
-//   var author = new Author(authordetail);
-       
-//   author.save(function (err) {
-//     if (err) {
-//       cb(err, null)
-//       return
-//     }
-//     console.log('New Author: ' + author);
-//     authors.push(author)
-//     cb(null, author)
-//   }  );
-// }
-
-// function genreCreate(name, cb) {
-//   var genre = new Genre({ name: name });
-       
-//   genre.save(function (err) {
-//     if (err) {
-//       cb(err, null);
-//       return;
-//     }
-//     console.log('New Genre: ' + genre);
-//     genres.push(genre)
-//     cb(null, genre);
-//   }   );
-// }
-
-// function bookCreate(title, summary, isbn, author, genre, cb) {
-//   bookdetail = { 
-//     title: title,
-//     summary: summary,
-//     author: author,
-//     isbn: isbn
-//   }
-//   if (genre != false) bookdetail.genre = genre
-    
-//   var book = new Book(bookdetail);    
-//   book.save(function (err) {
-//     if (err) {
-//       cb(err, null)
-//       return
-//     }
-//     console.log('New Book: ' + book);
-//     books.push(book)
-//     cb(null, book)
-//   }  );
-// }
-
-
-// function bookInstanceCreate(book, imprint, due_back, status, cb) {
-//   bookinstancedetail = { 
-//     book: book,
-//     imprint: imprint
-//   }    
-//   if (due_back != false) bookinstancedetail.due_back = due_back
-//   if (status != false) bookinstancedetail.status = status
-    
-//   var bookinstance = new BookInstance(bookinstancedetail);    
-//   bookinstance.save(function (err) {
-//     if (err) {
-//       console.log('ERROR CREATING BookInstance: ' + bookinstance);
-//       cb(err, null)
-//       return
-//     }
-//     console.log('New BookInstance: ' + bookinstance);
-//     bookinstances.push(bookinstance)
-//     cb(null, book)
-//   }  );
-// }
-
 function populateGames(cb) {
-    async.series([
+    async.parallel([
         function(callback) {
             gameCreate('Game 01', callback);
         },
@@ -235,143 +134,608 @@ function populateGames(cb) {
         },
         function(callback) {
             gameCreate('Game 09', callback);
+        },
+        function(callback) {
+          gameCreate('Game 10', callback);
         }
     ],
     // optional callback
     cb);
 }
 
-
-
-function createGenreAuthors(cb) {
-    async.series([
-        function(callback) {
-          authorCreate('Patrick', 'Rothfuss', '1973-06-06', false, callback);
-        },
-        function(callback) {
-          authorCreate('Ben', 'Bova', '1932-11-8', false, callback);
-        },
-        function(callback) {
-          authorCreate('Isaac', 'Asimov', '1920-01-02', '1992-04-06', callback);
-        },
-        function(callback) {
-          authorCreate('Bob', 'Billings', false, false, callback);
-        },
-        function(callback) {
-          authorCreate('Jim', 'Jones', '1971-12-16', false, callback);
-        },
-        function(callback) {
-          genreCreate("Fantasy", callback);
-        },
-        function(callback) {
-          genreCreate("Science Fiction", callback);
-        },
-        function(callback) {
-          genreCreate("French Poetry", callback);
-        },
-        ],
-        // optional callback
-        cb);
+function populateAssets(cb) {
+  async.parallel([
+      function(callback) {
+        assetCreate('Asset 01', games[0], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 02', games[0], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 03', games[1], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 04', games[1], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 05', games[2], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 06', games[2], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 07', games[3], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 08', games[3], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 09', games[4], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 10', games[4], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 11', games[5], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 12', games[5], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 13', games[6], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 14', games[6], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 15', games[7], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 16', games[7], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 17', games[8], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 18', games[8], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 19', games[9], callback);
+      },
+      function(callback) {
+        assetCreate('Asset 20', games[9], callback);
+      }
+  ],
+  // optional callback
+  cb);
 }
 
-
-function createBooks(cb) {
-    async.parallel([
-        function(callback) {
-          bookCreate('The Name of the Wind (The Kingkiller Chronicle, #1)', 'I have stolen princesses back from sleeping barrow kings. I burned down the town of Trebon. I have spent the night with Felurian and left with both my sanity and my life. I was expelled from the University at a younger age than most people are allowed in. I tread paths by moonlight that others fear to speak of during day. I have talked to Gods, loved women, and written songs that make the minstrels weep.', '9781473211896', authors[0], [genres[0],], callback);
-        },
-        function(callback) {
-          bookCreate("The Wise Man's Fear (The Kingkiller Chronicle, #2)", 'Picking up the tale of Kvothe Kingkiller once again, we follow him into exile, into political intrigue, courtship, adventure, love and magic... and further along the path that has turned Kvothe, the mightiest magician of his age, a legend in his own time, into Kote, the unassuming pub landlord.', '9788401352836', authors[0], [genres[0],], callback);
-        },
-        function(callback) {
-          bookCreate("The Slow Regard of Silent Things (Kingkiller Chronicle)", 'Deep below the University, there is a dark place. Few people know of it: a broken web of ancient passageways and abandoned rooms. A young woman lives there, tucked among the sprawling tunnels of the Underthing, snug in the heart of this forgotten place.', '9780756411336', authors[0], [genres[0],], callback);
-        },
-        function(callback) {
-          bookCreate("Apes and Angels", "Humankind headed out to the stars not for conquest, nor exploration, nor even for curiosity. Humans went to the stars in a desperate crusade to save intelligent life wherever they found it. A wave of death is spreading through the Milky Way galaxy, an expanding sphere of lethal gamma ...", '9780765379528', authors[1], [genres[1],], callback);
-        },
-        function(callback) {
-          bookCreate("Death Wave","In Ben Bova's previous novel New Earth, Jordan Kell led the first human mission beyond the solar system. They discovered the ruins of an ancient alien civilization. But one alien AI survived, and it revealed to Jordan Kell that an explosion in the black hole at the heart of the Milky Way galaxy has created a wave of deadly radiation, expanding out from the core toward Earth. Unless the human race acts to save itself, all life on Earth will be wiped out...", '9780765379504', authors[1], [genres[1],], callback);
-        },
-        function(callback) {
-          bookCreate('Test Book 1', 'Summary of test book 1', 'ISBN111111', authors[4], [genres[0],genres[1]], callback);
-        },
-        function(callback) {
-          bookCreate('Test Book 2', 'Summary of test book 2', 'ISBN222222', authors[4], false, callback)
-        }
+function populateUsers(cb) {
+  async.parallel([
+      function(callback) {
+        userCreate('username01', 'email01@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[0],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[1],
+            amount: 20,
+            selling: true
+          }
         ],
-        // optional callback
-        cb);
+        [
+          assets[2],
+          assets[3],
+          assets[4]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username02', 'email02@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[2],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[3],
+            amount: 20,
+            selling: true
+          }
+        ],
+        [
+          assets[3],
+          assets[4],
+          assets[5]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username03', 'email03@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[4],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[5],
+            amount: 20,
+            selling: true
+          }
+        ],
+        [
+          assets[4],
+          assets[5],
+          assets[6]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username04', 'email04@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[6],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[7],
+            amount: 20,
+            selling: true
+          }
+        ],
+        [
+          assets[5],
+          assets[6],
+          assets[7]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username05', 'email05@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[8],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[9],
+            amount: 20,
+            selling: true
+          }
+        ],
+        [
+          assets[6],
+          assets[7],
+          assets[8]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username06', 'email06@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[10],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[11],
+            amount: 20,
+            selling: true
+          }
+        ],
+        [
+          assets[9],
+          assets[10],
+          assets[11]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username07', 'email07@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[12],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[13],
+            amount: 20,
+            selling: true
+          }
+        ],
+        [
+          assets[10],
+          assets[11],
+          assets[12]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username08', 'email08@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[14],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[15],
+            amount: 20,
+            selling: true
+          }
+        ],
+        [
+          assets[13],
+          assets[14],
+          assets[15]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username09', 'email09@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[16],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[17],
+            amount: 20,
+            selling: true
+          }
+        ],
+        [
+          assets[16],
+          assets[17],
+          assets[18]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username10', 'email10@teste.com', '123456', 0, 
+        [
+          {
+            asset: assets[18],
+            amount: 10,
+            selling: false
+          },
+          {
+            asset: assets[19],
+            amount: 20,
+            selling: true
+          }
+        ],
+        [
+          assets[17],
+          assets[18],
+          assets[19]
+        ], callback);
+      },
+      function(callback) {
+        userCreate('username11', 'email11@teste.com', '123456', 0, 
+        [],
+        [],
+        callback);
+      }
+  ],
+  // optional callback
+  cb);
 }
 
+function populateTransactions(cb) {
+  async.parallel([
+      function(callback) {
+        transactionCreate(users[0], users[1],
+          {
+            asset: assets[0],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[0], users[1],
+          {
+            asset: assets[1],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[1], users[2],
+          {
+            asset: assets[2],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[1], users[2],
+          {
+            asset: assets[3],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[2], users[3],
+          {
+            asset: assets[4],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[2], users[3],
+          {
+            asset: assets[5],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[3], users[4],
+          {
+            asset: assets[6],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[3], users[4],
+          {
+            asset: assets[7],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[4], users[5],
+          {
+            asset: assets[8],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[4], users[5],
+          {
+            asset: assets[9],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[5], users[6],
+          {
+            asset: assets[10],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[5], users[6],
+          {
+            asset: assets[11],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[6], users[7],
+          {
+            asset: assets[12],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[6], users[7],
+          {
+            asset: assets[13],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[7], users[8],
+          {
+            asset: assets[14],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[7], users[8],
+          {
+            asset: assets[15],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[8], users[9],
+          {
+            asset: assets[16],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[8], users[9],
+          {
+            asset: assets[17],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[9], users[10],
+          {
+            asset: assets[18],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        transactionCreate(users[9], users[10],
+          {
+            asset: assets[19],
+            amount: 100
+          }, callback);
+      }
+  ],
+  // optional callback
+  cb);
+}
 
-function createBookInstances(cb) {
-    async.parallel([
-        function(callback) {
-          bookInstanceCreate(books[0], 'London Gollancz, 2014.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[1], ' Gollancz, 2011.', false, 'Loaned', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[2], ' Gollancz, 2015.', false, false, callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Maintenance', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Loaned', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[0], 'Imprint XXX2', false, false, callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[1], 'Imprint XXX3', false, false, callback)
-        }
-        ],
-        // Optional callback
-        cb);
+function populateMarketItens(cb) {
+  async.parallel([
+      function(callback) {
+        marketItemCreate(users[0],
+          {
+            asset: assets[0],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[0],
+          {
+            asset: assets[1],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[1],
+          {
+            asset: assets[2],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[1],
+          {
+            asset: assets[3],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[2],
+          {
+            asset: assets[4],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[2],
+          {
+            asset: assets[5],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[3],
+          {
+            asset: assets[6],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[3],
+          {
+            asset: assets[7],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[4],
+          {
+            asset: assets[8],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[4],
+          {
+            asset: assets[9],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[5],
+          {
+            asset: assets[10],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[5],
+          {
+            asset: assets[11],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[6],
+          {
+            asset: assets[12],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[6],
+          {
+            asset: assets[13],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[7],
+          {
+            asset: assets[14],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[7],
+          {
+            asset: assets[15],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[8],
+          {
+            asset: assets[16],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[8],
+          {
+            asset: assets[17],
+            amount: 10
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[9],
+          {
+            asset: assets[18],
+            amount: 100
+          }, callback);
+      },
+      function(callback) {
+        marketItemCreate(users[9],
+          {
+            asset: assets[19],
+            amount: 100
+          }, callback);
+      }
+  ],
+  // optional callback
+  cb);
 }
 
 async.series([
-    populateGames
+    populateGames,
+    populateAssets,
+    populateUsers,
+    populateTransactions,
+    populateMarketItens
 ],
 // Optional callback
 function(err, results) {
     if (err) {
-        console.log('FINAL ERR: '+ err);
+      console.log('FINAL ERR: ' + err);
     }
     else {
-        console.log('BOOKInstances: '+ games);            
+        console.log('Games Instances: ' + games.length);
+        console.log('Assets Instances: ' + assets.length);
+        console.log('Users Instances: ' + users.length);
+        console.log('Transactions Instances: ' + transactions.length);
+        console.log('Market Itens Instances: ' + marketItens.length);
     }
     // All done, disconnect from database
     mongoose.connection.close();
 });
-
-// async.series([
-//         createGenreAuthors,
-//         createBooks,
-//         createBookInstances
-//     ],
-//     // Optional callback
-//     function(err, results) {
-//         if (err) {
-//             console.log('FINAL ERR: '+err);
-//         }
-//         else {
-//             console.log('BOOKInstances: '+bookinstances);            
-//         }
-//         // All done, disconnect from database
-//         mongoose.connection.close();
-// });
