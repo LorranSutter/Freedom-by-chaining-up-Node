@@ -1,55 +1,15 @@
-var express = require('express');
-const bcrypt = require('bcryptjs');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-const User = require("../models/User");
 const auth = require("../middlewares/auth");
+const user_controller = require('../controllers/userController');
 
 /* GET login page. */
-router.get('/', function(req, res, next) {
-  if (req.session.user && req.cookies.user_sid) {
-    res.redirect('/dashboard');
-  }
-  res.render('login', { title: 'Login' });
-});
+router.get('/', user_controller.login_index);
 
-router.post(
-  "/auth",
-  async (req, res) => {
-    const { email, password } = req.body;
-    try {
-      let user = await User.findOne({
-        email
-      });
-      if (!user)
-        return res.status(400).json({
-          message: "User Not Exist"
-        });
-
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch)
-        return res.status(400).json({
-          message: "Incorrect Password !"
-        });
-      
-      req.session.user = {
-        email: user.email,
-        password: user.password
-      }
-      res.redirect('/dashboard');
-    } catch (e) {
-      console.error(e);
-      res.status(500).json({
-        message: "Server Error"
-      });
-    }
-  }
-);
+router.post("/auth", user_controller.login_auth);
 
 // route for user logout
-router.get('/logout', auth, (req, res) => {
-  res.clearCookie('user_sid');
-  res.redirect('/');
-});
+router.get('/logout', auth, user_controller.logout);
 
 module.exports = router;

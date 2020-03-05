@@ -2,45 +2,24 @@ var express = require('express');
 var router = express.Router();
 
 const auth = require("../middlewares/auth");
+const dashboard_controller = require('../controllers/dashboardController');
 
 /* GET dashboard layout page. */
-// router.get('/', function(req, res, next) {
-//     if (req.session.user && req.cookies.user_sid) {
-//         res.render('dashboard', { title: 'Dashboard' });
-//     } else {
-//         res.redirect('/login');
-//     }
-// });
-
-
-/* GET dashboard layout page. */
-router.get('/', auth, function(req, res, next) {
-    res.render('dashboard', { title: 'Dashboard' });
-});
+router.get('/', auth, dashboard_controller.dashboard_index);
 
 /* GET dashboard profile page. */
-router.get('/', auth, function(req, res, next) {
-    res.render('dashboard/dashboard-profile', { title: 'Dashboard Profile' });
-});
+router.get('/', auth, dashboard_controller.dashboard_profile);
 
 /* GET dashboard wishlist page. */
-router.get('/', auth, function(req, res, next) {
-    res.render('dashboard/dashboard-wishlist', { title: 'Dashboard Wishlist' });
-});
+router.get('/', auth, dashboard_controller.dashboard_wishlist);
 
 /* GET dashboard assets page. */
-router.get('/', auth, function(req, res, next) {
-    res.render('dashboard/dashboard-assets', { title: 'Dashboard Assets' });
-});
+router.get('/', auth, dashboard_controller.dashboard_assets);
 
 /* GET dashboard marketplace page. */
-router.get('/', auth, function(req, res, next) {
-    res.render('dashboard/dashboard-marketplace', { title: 'Dashboard Marketplace' });
-});
+router.get('/', auth, dashboard_controller.dashboard_marketplace);
 
 /* GET dashboard transaction history page. */
-router.get('/', auth, function(req, res, next) {
-    res.render('dashboard/dashboard-transactions', { title: 'Dashboard Transaction History' });
-});
+router.get('/', auth, dashboard_controller.dashboard_transactions);
 
 module.exports = router;

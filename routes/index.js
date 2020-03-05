@@ -1,17 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+const index_controller = require('../controllers/indexController');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home' });
-});
+router.get('/', index_controller.index);
 
-router.get('/index', function(req, res, next) {
-  res.render('index', { title: 'Home' });
-});
+router.get('/index', index_controller.index);
 
-router.get('/auth', function(req, res, next) {
-  res.send(req.session.user && req.cookies.user_sid ? true : false);
-});
+router.get('/auth', index_controller.auth);
 
 module.exports = router;
