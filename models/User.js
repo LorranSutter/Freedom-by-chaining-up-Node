@@ -32,7 +32,6 @@ let UserSchema = new Schema({
       {
         asset: {
           type: Schema.Types.ObjectId,
-          unique: true,
           ref: 'Asset'
         },
         amount: {
