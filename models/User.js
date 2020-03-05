@@ -6,14 +6,14 @@ const saltRounds = 10;
 let Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
-    email: {
+    username: {
         type: String,
         unique: true,
         required: true,
         trim: true,
         lowercase: true
       },
-    username: {
+    email: {
         type: String,
         unique: true,
         required: true,
@@ -29,22 +29,26 @@ let UserSchema = new Schema({
         default: 0
     },
     assets: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Asset',
-            amount: {
-                type: Number,
-                default: 0
-            },
-            selling: {
-                type: Boolean,
-                default: false
-            }
+      {
+        asset: {
+          type: Schema.Types.ObjectId,
+          unique: true,
+          ref: 'Asset'
+        },
+        amount: {
+          type: Number,
+          default: 0
+        },
+        selling: {
+          type: Boolean,
+          default: false
         }
+      }
     ],
     wishlist: [
         {
             type: Schema.Types.ObjectId,
+            unique: true,
             ref: 'Asset'
         }
     ]
