@@ -13,10 +13,11 @@ let TransactionSchema = new Schema({
         ref: 'User',
         required: true
     },
-    asset:{
-        type: Schema.Types.ObjectId,
-        ref: 'Asset',
-        required: true,
+    asset: {
+        asset: {
+            type: Schema.Types.ObjectId,
+            ref: 'Asset'
+        },
         amount: {
             type: Number
         }

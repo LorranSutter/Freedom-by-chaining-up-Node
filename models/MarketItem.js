@@ -9,14 +9,14 @@ let MarketItemSchema = new Schema({
         required: true
     },
     asset: {
-        type: Schema.Types.ObjectId,
-        ref: 'Asset',
-        required: true,
+        asset: {
+            type: Schema.Types.ObjectId,
+            ref: 'Asset'  
+        },
         amount: {
             type: Number,
-            required: true
         }
     }
 });
 
-module.exports = mongoose.model('MarketPlace', MarketItemSchema);
+module.exports = mongoose.model('MarketItens', MarketItemSchema);
