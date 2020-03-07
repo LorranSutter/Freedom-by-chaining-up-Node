@@ -70,12 +70,20 @@ exports.dashboard_wishlist_search = (req, res, next) => {
 }
 
 exports.dashboard_wishlist_remove = (req, res, next) => {
-    // console.log(req);
     // try {
-    //     User.update(
-    //         { '_id' : req.session.user.id},
-    //         { $pullAll: { 'wishlist': req.body._id } }
-    //         );
+    //     User.find({ '_id' : req.session.user.id})
+    //         .populate({ 
+    //             "path": "wishlist",
+    //             "match": { "_Id": req.body._id }
+    //         },
+    //             // {"match": { "wishlist": { "_Id": req.body._id } }},
+    //             ).exec(function(data) {
+    //                 console.log(data);
+    //         });
+        // User.update(
+        //     { '_id' : req.session.user.id},
+        //     { $pullAll: { 'wishlist': req.body._id } }
+        //     );
         // User.findById(req.session.user.id,
         //     function(error, doc) {
         //         doc.wishlist.pull({_id : req.body._id});
