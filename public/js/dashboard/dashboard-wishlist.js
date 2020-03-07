@@ -42,6 +42,7 @@ $(document).ready(function () {
         }).fail(function (req, status, err) {
             console.log(`Oh uh! Something went wrong. Got status: ${status}\nwith error: ${err}`);
         })
+        row.remove();
     }
 
     $("img[id*='remove-wishlist-button']").click(removeWishList);

@@ -74,7 +74,7 @@ exports.dashboard_wishlist_search = (req, res, next) => {
 }
 
 exports.dashboard_wishlist_remove = (req, res, next) => {
-    try {
+    // try {
         // User.find({ '_id' : req.session.user.id})
         //     .populate({ 
         //         "path": "wishlist",
@@ -107,10 +107,10 @@ exports.dashboard_wishlist_remove = (req, res, next) => {
         //     });
         // mongoIO.deleteItem({ _id: mongoDB.ObjectID(req.body._id), title: req.body.title });
         // res.send({ _id: mongoDB.ObjectID(req.body._id) });
-    } catch (error) {
-        next(error);
-    }
-    res.render('dashboard/dashboard-wishlist', { title: 'Dashboard Wishlist' });
+    // } catch (error) {
+    //     next(error);
+    // }
+    // res.render('dashboard/dashboard-wishlist', { title: 'Dashboard Wishlist' });
 }
 
 exports.dashboard_assets = (req, res, next) => {
