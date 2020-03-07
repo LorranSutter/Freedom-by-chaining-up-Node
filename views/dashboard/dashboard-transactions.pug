@@ -10,7 +10,10 @@ div(class="transaction-history")
                     th(id="col-asset") Item
                     th(id="col-amount") Amount
             tbody
-                each i in [1,2,3,4,5,6,7,8,9]
+                each elem in transactions_list
                     tr
-                        td Hash !{i}
-                        td Timestamp !{i}
+                        td= elem.seller.username
+                        td= elem.buyer.username
+                        td= moment(elem.createdAt).format('YYYY-MM-DD HH:mm')
+                        td= elem.asset.asset.name
+                        td= elem.asset.amount

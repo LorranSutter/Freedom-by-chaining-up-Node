@@ -10,11 +10,12 @@ div(class="marketplace")
                     th(id="col-amount") Amount
                     th(id="col-buy") Buy
             tbody
-                each i in [1,2,3,4,5,6,7,8,9]
+                each elem in marketItens
                     tr
-                        td Seller !{i}
-                        td Item !{i}
-                        td 1000
+                        td= elem.seller.username
+                        td= moment(elem.createdAt).format('YYYY-MM-DD HH:mm')
+                        td= elem.asset.asset.name
+                        td= elem.asset.amount
                         td 
                             img(src="img/buy_liken.png" alt="buy_liken")
                             //- Thanks to https://www.shutterstock.com/image-vector/investing-icons-including-investment-stock-market-1350946325

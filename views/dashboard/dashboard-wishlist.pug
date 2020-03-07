@@ -8,8 +8,8 @@ div(class="wishlist")
                     th(id="col-item") Item
                     th(id="col-remove") Remove
             tbody
-                each i in [1,2,3,4,5,6,7,8,9]
+                each elem in wishlist
                     tr
-                        td Item !{i}
+                        td= elem.name
                         td 
                             img(src="img/remove_logo.png" alt="remove_logo")

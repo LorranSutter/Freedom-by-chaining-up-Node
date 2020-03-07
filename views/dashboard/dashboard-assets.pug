@@ -8,9 +8,9 @@ div(class="assets")
                     th(id="col-amount") Amount
                     th(id="col-sell") Sell
             tbody
-                each i in [1,2,3,4,5,6,7,8,9]
+                each elem in assets_list
                     tr
-                        td Item !{i}
-                        td 100
+                        td= elem.asset.name
+                        td= elem.amount
                         td 
                             img(src="img/sell_logo.png" alt="sell_logo")
