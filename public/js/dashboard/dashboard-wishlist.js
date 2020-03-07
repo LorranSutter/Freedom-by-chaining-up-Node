@@ -4,7 +4,7 @@ $(document).ready(function () {
         let id = data._id;
         let name = data.name;
         $('.table-wishlist > tbody')
-        .append(`<tr id='wishlist-${id}'>
+        .prepend(`<tr id='wishlist-${id}'>
                 <td>${name}</td>
                 <td><img id='remove-wishlist-button-${id}' src='img/remove_logo.png' alt='remove_logo'></td>
                 </tr>`);
