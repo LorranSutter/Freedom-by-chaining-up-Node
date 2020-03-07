@@ -9,7 +9,7 @@ div(class="wishlist")
                     th(id="col-remove") Remove
             tbody
                 each elem in wishlist
-                    tr
+                    tr(id=`wishlist-${elem._id.toString()}`)
                         td= elem.name
                         td 
                             img(src="img/remove_logo.png" alt="remove_logo")

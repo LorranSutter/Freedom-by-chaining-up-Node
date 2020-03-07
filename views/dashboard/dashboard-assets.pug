@@ -9,7 +9,7 @@ div(class="assets")
                     th(id="col-sell") Sell
             tbody
                 each elem in assets_list
-                    tr
+                    tr(id=`asset-${elem.asset._id.toString()}`)
                         td= elem.asset.name
                         td= elem.amount
                         td 

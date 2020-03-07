@@ -11,7 +11,7 @@ div(class="transaction-history")
                     th(id="col-amount") Amount
             tbody
                 each elem in transactions_list
-                    tr
+                    tr(id=`transaction-${elem._id.toString()}`)
                         td= elem.seller.username
                         td= elem.buyer.username
                         td= moment(elem.createdAt).format('YYYY-MM-DD HH:mm')

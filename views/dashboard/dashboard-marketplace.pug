@@ -11,7 +11,7 @@ div(class="marketplace")
                     th(id="col-buy") Buy
             tbody
                 each elem in marketItens
-                    tr
+                    tr(id=`marketitem-${elem._id.toString()}`)
                         td= elem.seller.username
                         td= moment(elem.createdAt).format('YYYY-MM-DD HH:mm')
                         td= elem.asset.asset.name
