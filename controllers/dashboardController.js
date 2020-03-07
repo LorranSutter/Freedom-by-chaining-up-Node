@@ -39,8 +39,6 @@ exports.dashboard_index = (req, res) => {
         }
     }, function(err, results) {
         if (err) { console.log(err); }
-        // console.log(results);
-        // console.log(results.user.wishlist[0]._id.toString());
 
         res.render('dashboard', { 
             title: 'Dashboard',

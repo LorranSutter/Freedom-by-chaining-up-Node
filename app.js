@@ -13,7 +13,6 @@ InitiateMongoServer();
 var indexRouter = require('./routes/index');
 var howItWorksRouter = require('./routes/howItWorks');
 var contactRouter = require('./routes/contact');
-// var userRouter = require('./routes/user');
 var loginRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
 var dashboardRouter = require('./routes/dashboard');
