@@ -17,5 +17,5 @@ div(class="marketplace")
                         td= elem.asset.asset.name
                         td= elem.asset.amount
                         td 
-                            img(src="img/buy_liken.png" alt="buy_liken")
+                            img(id=`marketitem-buy-${elem._id.toString()}` src="img/buy_liken.png" alt="buy_liken")
                             //- Thanks to https://www.shutterstock.com/image-vector/investing-icons-including-investment-stock-market-1350946325

@@ -13,4 +13,4 @@ div(class="assets")
                         td= elem.asset.name
                         td= elem.amount
                         td 
-                            img(src="img/sell_logo.png" alt="sell_logo")
+                            img(id=`asset-sell-${elem.asset._id.toString()}` src="img/sell_logo.png" alt="sell_logo")

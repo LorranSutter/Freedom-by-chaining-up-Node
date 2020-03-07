@@ -4,6 +4,7 @@ let Transaction = require('../models/Transaction');
 let MarketItem = require('../models/MarketItem');
 
 let async = require('async');
+let mongoose = require('mongoose');
 
 exports.dashboard_index = (req, res) => {
 
@@ -38,8 +39,8 @@ exports.dashboard_index = (req, res) => {
         }
     }, function(err, results) {
         if (err) { console.log(err); }
-        console.log(results);
-        console.log(results.user.wishlist[0]._id.toString());
+        // console.log(results);
+        // console.log(results.user.wishlist[0]._id.toString());
 
         res.render('dashboard', { 
             title: 'Dashboard',
@@ -57,12 +58,45 @@ exports.dashboard_profile = (req, res, next) => {
     res.render('dashboard/dashboard-profile', { title: 'Dashboard Profile' });
 }
 
-exports.dashboard_wishlist = (req, res, next) => {
-    res.render('dashboard/dashboard-wishlist', { title: 'Dashboard Wishlist' });
+exports.dashboard_wishlist_search = (req, res, next) => {
+    try {
+        Asset.find({'name' : req.body.search })
+             .then(x => {
+                 res.send(x[0]);
+             })
+    } catch (error) {
+        next(error);
+    }
 }
 
 exports.dashboard_wishlist_remove = (req, res, next) => {
-    res.render('dashboard/dashboard-wishlist', { title: 'Dashboard Wishlist' });
+    console.log(req);
+    try {
+        User.update(
+            { '_id' : req.session.user.id},
+            { $pullAll: { 'wishlist': req.body._id } }
+            );
+        // User.findById(req.session.user.id,
+        //     function(error, doc) {
+        //         doc.wishlist.pull({_id : req.body._id});
+        //         console.log('Error: ' + error);
+        //         console.log(JSON.stringify(doc));
+        //         // process.exit(0);
+        //     });
+        // User.findById(req.session.user.id,
+        //     { $pull: { 'wishlist': { '_id': mongoose.ObjectId(req.body._id) }}},
+        //     { safe: true, multi:true },
+        //     function(error, doc) {
+        //         console.log('Error: ' + error);
+        //         console.log(JSON.stringify(doc));
+        //         // process.exit(0);
+        //     });
+        // mongoIO.deleteItem({ _id: mongoDB.ObjectID(req.body._id), title: req.body.title });
+        // res.send({ _id: mongoDB.ObjectID(req.body._id) });
+    } catch (error) {
+        next(error);
+    }
+    // res.render('dashboard/dashboard-wishlist', { title: 'Dashboard Wishlist' });
 }
 
 exports.dashboard_assets = (req, res, next) => {
