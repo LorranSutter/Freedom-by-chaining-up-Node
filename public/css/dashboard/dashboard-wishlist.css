@@ -29,6 +29,7 @@
 
 .table-wishlist-content::-webkit-scrollbar {
     width: 0.5em;
+    height: 0.5em;
 }
 
 .table-wishlist-content::-webkit-scrollbar-thumb {
