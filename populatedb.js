@@ -19,13 +19,20 @@ let games = [];
 let transactions = [];
 let marketItens = [];
 
+function randomInt(start,end) {
+  return parseInt(Math.random()*(end-start)+start);
+}
+
+function randomDate(start, end) {
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
 function gameCreate(name, cb) {
     let game = new Game({ name: name });
          
     game.save(function (err) {
         if (err) {
-            cb(err, null);
-            return;
+            throw err;
         }
         console.log('New Game: ' + game.name);
         games.push(game);
@@ -41,8 +48,7 @@ function assetCreate(name, game, cb) {
          
     asset.save(function (err) {
         if (err) {
-            cb(err, null);
-            return;
+            throw err;
         }
         console.log('New Asset: ' + asset.name);
         assets.push(asset);
@@ -62,8 +68,7 @@ function userCreate(username, email, password, balance, assets, wishlist, cb) {
          
     user.save(function (err) {
         if (err) {
-            cb(err, null);
-            return;
+            throw err;
         }
         console.log('New User: ' + user.username);
         users.push(user);
@@ -71,17 +76,18 @@ function userCreate(username, email, password, balance, assets, wishlist, cb) {
     });
 }
 
-function transactionCreate(seller, buyer, asset, cb) {
+function transactionCreate(seller, buyer, asset, createdAt, cb) {
     let transaction = new Transaction({
         seller,
         buyer,
-        asset
+        asset,
+        createdAt
     });    
          
     transaction.save(function (err) {
         if (err) {
-            cb(err, null);
-            return;
+          cb(err, null);
+          return;
         }
         console.log('New Transaction');
         transactions.push(transaction);
@@ -97,8 +103,7 @@ function marketItemCreate(seller, asset, cb) {
          
     marketItem.save(function (err) {
         if (err) {
-            cb(err, null);
-            return;
+            throw err;
         }
         console.log('New Market Item');
         marketItens.push(marketItem);
@@ -213,16 +218,16 @@ function populateAssets(cb) {
 function populateUsers(cb) {
   async.parallel([
       function(callback) {
-        userCreate('username01', 'email01@teste.com', '123456', 0, 
+        userCreate('username01', 'email01@teste.com', '123456', randomInt(1000,10000), 
         [
           {
             asset: assets[0],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[1],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -233,16 +238,16 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username02', 'email02@teste.com', '123456', 0, 
+        userCreate('username02', 'email02@teste.com', '123456', randomInt(1000,10000),
         [
           {
             asset: assets[2],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[3],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -253,16 +258,16 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username03', 'email03@teste.com', '123456', 0, 
+        userCreate('username03', 'email03@teste.com', '123456', randomInt(1000,10000),
         [
           {
             asset: assets[4],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[5],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -273,16 +278,16 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username04', 'email04@teste.com', '123456', 0, 
+        userCreate('username04', 'email04@teste.com', '123456', randomInt(1000,10000),
         [
           {
             asset: assets[6],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[7],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -293,16 +298,16 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username05', 'email05@teste.com', '123456', 0, 
+        userCreate('username05', 'email05@teste.com', '123456', randomInt(1000,10000),
         [
           {
             asset: assets[8],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[9],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -313,16 +318,16 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username06', 'email06@teste.com', '123456', 0, 
+        userCreate('username06', 'email06@teste.com', '123456', randomInt(1000,10000),
         [
           {
             asset: assets[10],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[11],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -333,16 +338,16 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username07', 'email07@teste.com', '123456', 0, 
+        userCreate('username07', 'email07@teste.com', '123456', randomInt(1000,10000),
         [
           {
             asset: assets[12],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[13],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -353,16 +358,16 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username08', 'email08@teste.com', '123456', 0, 
+        userCreate('username08', 'email08@teste.com', '123456', randomInt(1000,10000),
         [
           {
             asset: assets[14],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[15],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -373,16 +378,16 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username09', 'email09@teste.com', '123456', 0, 
+        userCreate('username09', 'email09@teste.com', '123456', randomInt(1000,10000),
         [
           {
             asset: assets[16],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[17],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -393,16 +398,16 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username10', 'email10@teste.com', '123456', 0, 
+        userCreate('username10', 'email10@teste.com', '123456', randomInt(1000,10000),
         [
           {
             asset: assets[18],
-            amount: 10,
+            amount: randomInt(10,100),
             selling: false
           },
           {
             asset: assets[19],
-            amount: 20,
+            amount: randomInt(10,100),
             selling: true
           }
         ],
@@ -413,7 +418,7 @@ function populateUsers(cb) {
         ], callback);
       },
       function(callback) {
-        userCreate('username11', 'email11@teste.com', '123456', 0, 
+        userCreate('username11', 'email11@teste.com', '123456', randomInt(1000,10000),
         [],
         [],
         callback);
@@ -429,141 +434,181 @@ function populateTransactions(cb) {
         transactionCreate(users[0], users[1],
           {
             asset: assets[0],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100)
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[0], users[1],
           {
             asset: assets[1],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[1], users[2],
           {
             asset: assets[2],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[1], users[2],
           {
             asset: assets[3],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[2], users[3],
           {
             asset: assets[4],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[2], users[3],
           {
             asset: assets[5],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[3], users[4],
           {
             asset: assets[6],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[3], users[4],
           {
             asset: assets[7],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[4], users[5],
           {
             asset: assets[8],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[4], users[5],
           {
             asset: assets[9],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[5], users[6],
           {
             asset: assets[10],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[5], users[6],
           {
             asset: assets[11],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[6], users[7],
           {
             asset: assets[12],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[6], users[7],
           {
             asset: assets[13],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[7], users[8],
           {
             asset: assets[14],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[7], users[8],
           {
             asset: assets[15],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[8], users[9],
           {
             asset: assets[16],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[8], users[9],
           {
             asset: assets[17],
-            amount: 10
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[9], users[10],
           {
             asset: assets[18],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         transactionCreate(users[9], users[10],
           {
             asset: assets[19],
-            amount: 100
-          }, callback);
+            amount: randomInt(10,100),
+          }, 
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       }
   ],
   // optional callback
@@ -576,140 +621,140 @@ function populateMarketItens(cb) {
         marketItemCreate(users[0],
           {
             asset: assets[0],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[0],
           {
             asset: assets[1],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[1],
           {
             asset: assets[2],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[1],
           {
             asset: assets[3],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[2],
           {
             asset: assets[4],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[2],
           {
             asset: assets[5],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[3],
           {
             asset: assets[6],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[3],
           {
             asset: assets[7],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[4],
           {
             asset: assets[8],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[4],
           {
             asset: assets[9],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[5],
           {
             asset: assets[10],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[5],
           {
             asset: assets[11],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[6],
           {
             asset: assets[12],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[6],
           {
             asset: assets[13],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[7],
           {
             asset: assets[14],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[7],
           {
             asset: assets[15],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[8],
           {
             asset: assets[16],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[8],
           {
             asset: assets[17],
-            amount: 10
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[9],
           {
             asset: assets[18],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       },
       function(callback) {
         marketItemCreate(users[9],
           {
             asset: assets[19],
-            amount: 100
+            amount: randomInt(10,100)
           }, callback);
       }
   ],
