@@ -112,108 +112,23 @@ function marketItemCreate(seller, asset, createdAt, cb) {
     });
 }
 
+let gameCreateArray = []
+let assetCreateArray = []
+
+for (let i = 0; i < 10; i++) {
+  gameCreateArray.push(cb => gameCreate(`Game ${i}`, cb) );
+}
+
+for (let i = 0; i < 20; i++) {
+  assetCreateArray.push(cb => assetCreate(`Asset ${i}`, games[Math.floor(i/2)], cb) );
+}
+
 function populateGames(cb) {
-    async.parallel([
-        function(callback) {
-            gameCreate('Game 01', callback);
-        },
-        function(callback) {
-            gameCreate('Game 02', callback);
-        },
-        function(callback) {
-            gameCreate('Game 03', callback);
-        },
-        function(callback) {
-            gameCreate('Game 04', callback);
-        },
-        function(callback) {
-            gameCreate('Game 05', callback);
-        },
-        function(callback) {
-            gameCreate('Game 06', callback);
-        },
-        function(callback) {
-            gameCreate('Game 07', callback);
-        },
-        function(callback) {
-            gameCreate('Game 08', callback);
-        },
-        function(callback) {
-            gameCreate('Game 09', callback);
-        },
-        function(callback) {
-          gameCreate('Game 10', callback);
-        }
-    ],
-    // optional callback
-    cb);
+  async.parallel(gameCreateArray, cb);
 }
 
 function populateAssets(cb) {
-  async.parallel([
-      function(callback) {
-        assetCreate('Asset 01', games[0], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 02', games[0], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 03', games[1], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 04', games[1], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 05', games[2], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 06', games[2], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 07', games[3], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 08', games[3], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 09', games[4], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 10', games[4], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 11', games[5], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 12', games[5], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 13', games[6], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 14', games[6], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 15', games[7], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 16', games[7], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 17', games[8], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 18', games[8], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 19', games[9], callback);
-      },
-      function(callback) {
-        assetCreate('Asset 20', games[9], callback);
-      }
-  ],
-  // optional callback
-  cb);
+  async.parallel(assetCreateArray, cb);
 }
 
 function populateUsers(cb) {
