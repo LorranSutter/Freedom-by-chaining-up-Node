@@ -4,8 +4,11 @@ div(class="transaction-history")
         table(class="table-transaction-history")
             thead
                 tr
-                    th(id="col-hash") Hash
-                    th(id="col-date") Timestamp
+                    th(id="col-seller") Seller
+                    th(id="col-buyer") Buyer
+                    th(id="col-date") Date
+                    th(id="col-asset") Item
+                    th(id="col-amount") Amount
             tbody
                 each i in [1,2,3,4,5,6,7,8,9]
                     tr
