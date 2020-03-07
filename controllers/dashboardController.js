@@ -62,7 +62,13 @@ exports.dashboard_wishlist_search = (req, res, next) => {
     try {
         Asset.find({'name' : req.body.search })
              .then(x => {
-                 res.send(x[0]);
+                 if(x.length !== 0){
+                    User.update(
+                        { '_id' : req.session.user.id},
+                        { $push: { 'wishlist': x[0] } },
+                        () => res.send(x[0])
+                        );
+                    }
              })
     } catch (error) {
         next(error);
@@ -70,20 +76,22 @@ exports.dashboard_wishlist_search = (req, res, next) => {
 }
 
 exports.dashboard_wishlist_remove = (req, res, next) => {
-    // try {
-    //     User.find({ '_id' : req.session.user.id})
-    //         .populate({ 
-    //             "path": "wishlist",
-    //             "match": { "_Id": req.body._id }
-    //         },
-    //             // {"match": { "wishlist": { "_Id": req.body._id } }},
-    //             ).exec(function(data) {
-    //                 console.log(data);
-    //         });
+    try {
+        // User.find({ '_id' : req.session.user.id})
+        //     .populate({ 
+        //         "path": "wishlist",
+        //         "match": { "_Id": req.body._id }
+        //     },
+        //         // {"match": { "wishlist": { "_Id": req.body._id } }},
+        //         ).exec(function(data) {
+        //             console.log(data);
+        //     });
         // User.update(
         //     { '_id' : req.session.user.id},
-        //     { $pullAll: { 'wishlist': req.body._id } }
-        //     );
+        //     { $pull: { 'wishlist': { _id : mongoose.ObjectId(req.body._id )} } },
+        //     a => {
+        //         console.log(a);
+        //     });
         // User.findById(req.session.user.id,
         //     function(error, doc) {
         //         doc.wishlist.pull({_id : req.body._id});
@@ -101,10 +109,10 @@ exports.dashboard_wishlist_remove = (req, res, next) => {
         //     });
         // mongoIO.deleteItem({ _id: mongoDB.ObjectID(req.body._id), title: req.body.title });
         // res.send({ _id: mongoDB.ObjectID(req.body._id) });
-    // } catch (error) {
-    //     next(error);
-    // }
-    // res.render('dashboard/dashboard-wishlist', { title: 'Dashboard Wishlist' });
+    } catch (error) {
+        next(error);
+    }
+    res.render('dashboard/dashboard-wishlist', { title: 'Dashboard Wishlist' });
 }
 
 exports.dashboard_assets = (req, res, next) => {
