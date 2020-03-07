@@ -21,7 +21,12 @@ let TransactionSchema = new Schema({
         amount: {
             type: Number
         }
-    }    
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Transaction', TransactionSchema);
