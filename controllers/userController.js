@@ -26,6 +26,7 @@ exports.login_auth = async (req, res) => {
         });
       
       req.session.user = {
+        id: user.id,
         email: user.email,
         password: user.password
       }
@@ -73,6 +74,7 @@ exports.signup_auth = async (req, res) => {
         await user.save();
 
         req.session.user = {
+            id: user.id,
             email: user.email,
             password: user.password
         }
