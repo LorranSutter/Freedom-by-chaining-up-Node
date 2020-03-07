@@ -95,10 +95,11 @@ function transactionCreate(seller, buyer, asset, createdAt, cb) {
     });
 }
 
-function marketItemCreate(seller, asset, cb) {
+function marketItemCreate(seller, asset, createdAt, cb) {
     let marketItem = new MarketItem({
         seller,
-        asset
+        asset,
+        createdAt
     });
          
     marketItem.save(function (err) {
@@ -622,140 +623,180 @@ function populateMarketItens(cb) {
           {
             asset: assets[0],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[0],
           {
             asset: assets[1],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[1],
           {
             asset: assets[2],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[1],
           {
             asset: assets[3],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[2],
           {
             asset: assets[4],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[2],
           {
             asset: assets[5],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[3],
           {
             asset: assets[6],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[3],
           {
             asset: assets[7],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[4],
           {
             asset: assets[8],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[4],
           {
             asset: assets[9],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[5],
           {
             asset: assets[10],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[5],
           {
             asset: assets[11],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[6],
           {
             asset: assets[12],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[6],
           {
             asset: assets[13],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[7],
           {
             asset: assets[14],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[7],
           {
             asset: assets[15],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[8],
           {
             asset: assets[16],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[8],
           {
             asset: assets[17],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[9],
           {
             asset: assets[18],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       },
       function(callback) {
         marketItemCreate(users[9],
           {
             asset: assets[19],
             amount: randomInt(10,100)
-          }, callback);
+          },
+          randomDate(new Date(2020,1,1),new Date(2020,3,1)),
+          callback);
       }
   ],
   // optional callback
