@@ -20,8 +20,7 @@ let TransactionSchema = new Schema({
         },
         amount: {
             type: Number
-        },
-        required: true
+        }
     },
     createdAt: {
         type: Date,
