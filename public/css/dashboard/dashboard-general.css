@@ -5,67 +5,67 @@
 @import url("dashboard-transactions.css");
 
 :root {
-    --main-bg-color: #0A2127;
-    --div-bg-color: rgba(19, 55, 67, 0.7);
-    --text-color: white;
-    --title-color: #B1EBFE;
+	--main-bg-color: #0a2127;
+	--div-bg-color: rgba(19, 55, 67, 0.7);
+	--text-color: white;
+	--title-color: #b1ebfe;
 }
 
 .container {
-    display: grid;
-    padding: 1em;    
+	display: grid;
+	padding: 1em;
 
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 30vmin);
-    grid-gap: 2vmin;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, 30vmin);
+	grid-gap: 2vmin;
 
-    background-color: var(--main-bg-color);
+	background-color: var(--main-bg-color);
 }
 
 .container > div {
-    padding: 2vmin;
-    border-radius: 10px;
-    background-color: var(--div-bg-color);
-    color: var(--text-color);
+	padding: 2vmin;
+	border-radius: 10px;
+	background-color: var(--div-bg-color);
+	color: var(--text-color);
 }
 
 .container h3 {
-    color: var(--title-color);
+	color: var(--title-color);
 }
 
 /* Media Query */
 
 @media screen and (max-width: 800px) {
-    .container {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(9, 30vmin);
-    }
+	.container {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(9, 30vmin);
+	}
 
-    .profile {
-        grid-column: 1;
-        grid-row: 1 / 2;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
-    }
+	.profile {
+		grid-column: 1;
+		grid-row: 1 / 2;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+	}
 
-    .wishlist {
-        grid-column: 1;
-        grid-row: 2 / 4;
-    }
+	.wishlist {
+		grid-column: 1;
+		grid-row: 2 / 4;
+	}
 
-    .assets {
-        grid-column: 1;
-        grid-row: 4 / 6;
-    }
+	.assets {
+		grid-column: 1;
+		grid-row: 4 / 6;
+	}
 
-    .marketplace {
-        grid-column: 1;
-        grid-row: 6 / 8;
-    }
+	.marketplace {
+		grid-column: 1;
+		grid-row: 6 / 8;
+	}
 
-    .transaction-history {
-        grid-column: 1;
-        grid-row: 8 / 10;
-    }
+	.transaction-history {
+		grid-column: 1;
+		grid-row: 8 / 10;
+	}
 }
