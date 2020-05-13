@@ -42,6 +42,12 @@ If you want to use your own mongodb account, replace the following variable with
 MONGOURI = <your-url>
 ```
 
+Then you may populate your database using the following command:
+
+```sh
+node populatedb.js
+```
+
 ## :book: Resources and technologies :computer:
 - [Final Assignment - BCDV1001](https://drive.google.com/file/d/1CQZWTo7N4vliZXRFV4m0hd2VNEdJs6BG/view?usp=sharing)
 - [HTML5](https://www.w3schools.com/html/html5_intro.asp)
