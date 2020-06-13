@@ -47,16 +47,17 @@ Then you may populate your database using the following command:
 ```sh
 node populatedb.js
 ```
-
-## :book: Resources and technologies :computer:
+## :book: Resources
 - [Final Assignment - BCDV1001](https://drive.google.com/file/d/1CQZWTo7N4vliZXRFV4m0hd2VNEdJs6BG/view?usp=sharing)
-- [HTML5](https://www.w3schools.com/html/html5_intro.asp)
-- [CSS](https://www.w3schools.com/css/)
-- [JavaScript](https://www.w3schools.com/js/)
-- [JQuery](https://jquery.com/)
-- [NodeJS](https://nodejs.org/en/)
-- [Express](http://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Mongoose](https://mongoosejs.com/)
-- [Moment](https://momentjs.com/)
-- [Pug](https://pugjs.org/)
+
+## :computer: Technologies
+- [HTML5](https://www.w3schools.com/html/html5_intro.asp) - markup language used for structuring and presenting content
+- [CSS](https://www.w3schools.com/css/) - style sheet language used for describing the presentation of a document
+- [JavaScript](https://www.w3schools.com/js/) - high-level, often just-in-time compiled, and multi-paradigm programming language
+- [JQuery](https://jquery.com/) - JS library designed to simplify HTML DOM interacto
+- [Node.js](https://nodejs.org/en/) - executes JS scripts in server side
+- [Express.js](http://expressjs.com/) - web application framework
+- [MongoDB](https://www.mongodb.com/) - NoSQL database
+- [Mongoose](https://mongoosejs.com/) - object data modeling (ODM) library for MongoDB and Node.js
+- [Moment.js](https://momentjs.com/) - parsing, validating, manipulating and displaying dates and times
+- [Pug](https://pugjs.org/) - template engine for Node.js and for the browser
